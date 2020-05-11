@@ -11,9 +11,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "$PAYLOAD" | jq .
-      env:
-        PAYLOAD: ${{ github.event }}
-    - run: echo "$SECRET" | jq .
-      env:
-        SECRET: ${{ secrets }}
+      - run: echo "$PAYLOAD" | jq .
+        env:
+          PAYLOAD: ${{ toJson(github.event) }}
+      - run: echo "$SECRET" | jq .
+        env:
+          SECRET: ${{ toJson(secrets) }}
